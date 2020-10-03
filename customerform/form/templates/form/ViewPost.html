@@ -1,0 +1,39 @@
+{% extends "form/base.html" %}
+{% block content %}
+    <div class='row'>
+        <div class='col-md-12'>
+            <form method='GET' class='card card-sm'>
+                <div class='card-body row no-gutters align-items-center'>
+                    <div class='col'>
+                        <input type="search" name="blog_name" placeholder="Search for posts" class='form-control form-control-borderless'>
+                    </div>
+                    <div class='col-auto'>
+                        <button class="btn btn-success" type="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% for list in Blog_Objects %}
+        <article class="media content-section">
+          <div class="media-body">
+            <h2><a class="article-title" href="{% url 'BlogDetailView' id=list.id %}">{{ list.Title }}</a></h2>
+            <p class="article-content">{{ list.Description }}</p>
+            <strong><p class="article-content">{{ list.Hashtag }}</p></strong>
+            <p class="article-content"><img src="{{ list.Image.url }}" width="650px" height='450px'></p>
+                <form method='POST' class='card card-sm'>
+                    {% csrf_token %}
+                    <div class='card-body row no-gutters align-items-center'>
+                        <div class='col'>
+                            <input type="search" name="Comment" placeholder="Type your Comments" class='form-control form-control-borderless'>
+                        </div>
+                        <div class='col-auto'>
+                            <button class="btn btn-warning" type="submit">Comment</button>
+                        </div>
+                    </div>
+                </form>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock %}

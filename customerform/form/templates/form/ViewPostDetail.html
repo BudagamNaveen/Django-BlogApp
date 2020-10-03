@@ -1,0 +1,13 @@
+{% extends "form/base.html" %}
+{% block content %}
+  <article class="media content-section">
+    <div class="media-body">
+      <h2 class="article-title">{{ Blog_Object.Title }}</h2>
+      <p class="article-content">{{ Blog_Object.Description }}</p>
+	  <p class="article-content"><img src="{{ Blog_Object.Image.url }}" width="650px" height='450px'></p>
+	  <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'BlogUpdateView' id=Blog_Object.pk %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="#">Delete</a>
+          </div>
+  </article>
+{% endblock content %}
